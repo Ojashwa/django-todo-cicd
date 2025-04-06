@@ -1,6 +1,7 @@
 FROM python:3
 
 WORKDIR /data
+RUN source myenv/bin/activate
 
 RUN pip install django==3.2
 
