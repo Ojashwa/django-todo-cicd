@@ -1,7 +1,7 @@
 FROM python:3
 
 WORKDIR /data
-RUN python3.12 -m venv myenv
+RUN python -m venv myenv
 RUN source myenv/bin/activate
 
 RUN curl -O https://bootstrap.pypa.io/get-pip.py
