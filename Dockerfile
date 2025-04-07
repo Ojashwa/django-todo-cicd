@@ -1,23 +1,26 @@
-FROM python:3
+FROM python:3.12-slim
 
+# Set working directory
 WORKDIR /data
-RUN python -m venv myenv
-RUN source myenv/bin/activate
 
-RUN curl -O https://bootstrap.pypa.io/get-pip.py
-RUN python get-pip.py
+# Install system dependencies
+RUN apt-get update && apt-get install -y gcc
 
-RUN python -c "from distutils.version import LooseVersion; print('OK')"
+# Create and activate virtual environment
+RUN python -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
 
+# Upgrade pip & install dependencies
+COPY requirements.txt .
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
 
-RUN pip install django==3.2
-
+# Copy app source code
 COPY . .
 
+# Run migrations
 RUN python manage.py migrate
 
+# Expose port & run app
 EXPOSE 8000
-
-CMD ["python","manage.py","runserver","0.0.0.0:8000"]
-
-
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
