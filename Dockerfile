@@ -1,7 +1,7 @@
 FROM python:3.12
 
 # Set working directory
-WORKDIR /data
+WORKDIR /app
 
 # Create and activate virtual environment
 RUN python -m venv /opt/venv
