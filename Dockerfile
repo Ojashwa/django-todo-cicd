@@ -1,7 +1,7 @@
 FROM python:3.11-slim
 
 # Set work directory
-WORKDIR /app
+WORKDIR /data
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y gcc libpq-dev curl
