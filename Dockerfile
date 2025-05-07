@@ -38,4 +38,4 @@ RUN python manage.py migrate
 # Expose port and start server
 EXPOSE 8000
 # Start server
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "todo-app.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "todoApp.wsgi:application"]
